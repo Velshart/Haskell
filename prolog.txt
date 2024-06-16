@@ -1,0 +1,56 @@
+Zad 1
+rodzic(X, zeus)
+
+Zad 2
+diff(red, green).
+diff(red, blue).
+diff(green, red).
+diff(green, blue).
+diff(blue, red).
+diff(blue, green).
+
+color(Podk, Lubl, Mazo, Podl, Warm) :- 
+    diff(Podk, Lubl),
+    diff(Lubl, Mazo),
+    diff(Lubl, Podl),
+    diff(Mazo, Podl),
+    diff(Mazo, Warm),
+    diff(Podl, Warm).
+
+Zad 3
+nwd(X, Y, Nwd) :- 
+    X = Y, Nwd = X.
+
+nwd(X, Y, Nwd) :- 
+    X > Y,
+    X1 is X - Y,
+    nwd(X1, Y, Nwd).
+
+
+nwd(X, Y, Nwd) :- 
+    X < Y,
+    Y1 is Y - X,
+    nwd(X, Y1, Nwd).
+
+Zad 4
+produkt(p1).
+produkt(p2).
+produkt(p3).
+
+skladnik(s1).
+skladnik(s2).
+skladnik(s3).
+skladnik(s4).
+
+zawiera(p1, s1).
+zawiera(p1, s2).
+
+dostepny(s1).
+dostepny(s2).
+
+
+potrzebuje(X,Y) :- zawiera(X,Y).
+
+moznaprodukowac(X) :- 
+    produkt(X),
+    forall(zawiera(X,S), dostepny(S)).
