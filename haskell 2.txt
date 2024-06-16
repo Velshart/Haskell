@@ -1,0 +1,46 @@
+kw :: Integer -> Integer
+kw x = x * x
+----------------------------------------
+rev :: [a] -> [a]
+rev x = rev' x []
+
+rev' :: [a] -> [a] -> [a]
+rev' [] x = x
+rev' (first:rest) x = rev' rest (first:x)
+----------------------------------------
+tabliczka :: [(Integer, Integer, Integer)]
+tabliczka = [(x, y, x*y) | x <- [1..12], y <- [1..12]]
+----------------------------------------
+color :: [String] -> [(String, String)]
+color [] = []
+color (first:rest) = [(first:x) | x <- rest] ++ color rest
+----------------------------------------
+addLists :: [a] -> [a] -> [a]
+addLists x y = x ++ y
+----------------------------------------
+member :: Eq a => a -> [a] -> Bool
+member x [] = False
+member x (first:rest) = x == first || member x rest
+----------------------------------------
+lastelement :: [a] -> a
+lastelement [x] = x
+lastelement (first:rest) = lastelement rest
+----------------------------------------
+delete :: Eq a => a -> [a] -> [a]
+delete x [] = []
+delete x (first:rest) =
+  if x == first
+  then rest
+  else first: delete x rest
+----------------------------------------
+--podzieli listę l  do dwóch list l1  i  l2 .  l1  zawiera elementy
+--mniejsze niż x  a  l2  elementy większe niż  x .
+split :: Ord a => a -> [a] -> ([a], [a])
+split x (first:rest) = (filter (< x) (first:rest), filter (> x) (first:rest))
+----------------------------------------
+main =  do
+  let x = takeWhile (<50) (map kw [0..])
+  let y = kw (snd ([1..5], 5))
+--alternatywnie: ^ fst
+
+  --print(split 3 [1,2,3,4,5])
