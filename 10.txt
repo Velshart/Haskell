@@ -1,0 +1,47 @@
+1.
+addMe :: Integer -> Integer -> Integer
+addMe x y = x + y
+
+main :: IO ()
+main =  do
+  putStr "Sum of x + y = "
+  print(addMe 10 25)
+------------------------------------
+2.
+solve :: Float -> Float -> Float -> (Float, Float)
+solve a b c = 
+  if delta >= 0
+    then ((-b - sqrt delta) / (2 * a), (-b + sqrt delta) / (2*a))
+    else error "Brak rozwiazan rzeczywistych."
+  where
+    delta = b ^ 2 - 4 * a * c
+    
+main = do
+  print(solve 1 2 3)
+-----
+solve :: Float -> Float -> Float -> (Float, Float)
+solve a b c 
+  | delta >= 0 = ((-b - sqrt delta) / (2 * a), (-b + sqrt delta) / (2*a))
+  | otherwise = error "Brak rozwiazan rzeczywistych."
+  where
+    delta = b ^ 2 - 4 * a * c
+    
+main = do
+  print(solve 1 20 3)
+-------------------------------------------
+3.
+factorial :: Integer -> Integer
+factorial 0 = 1
+factorial n = n * factorial(n-1)
+
+main = do
+  print (factorial 4)
+-------------------------------------------
+4.
+fib :: Integer -> Integer
+fib x
+  | x <= 2 = 1
+  | otherwise = fib (x - 1) + fib (x - 2)
+
+main = do
+  print(fib 7)
