@@ -38,6 +38,13 @@ delete x (first:rest) =
 split :: Ord a => a -> [a] -> ([a], [a])
 split x (first:rest) = (filter (< x) (first:rest), filter (> x) (first:rest))
 ----------------------------------------
+filterlist :: (a -> Bool) -> [a] -> [a]
+filterlist x [] = []
+filterlist x (first:rest) = 
+  if x first
+  then first: filterlist x rest
+  else filterlist x rest
+----------------------------------------
 main =  do
   let x = takeWhile (<50) (map kw [0..])
   let y = kw (snd ([1..5], 5))
